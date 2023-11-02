@@ -26,7 +26,7 @@ const deposit = () => {
         const numberDepositAmount = parseFloat(depositAmount); // Converting string to numeric value
 
         if (isNaN(numberDepositAmount) || numberDepositAmount <= 0){
-            console.log("Invalid deposit amoung, try again");
+            console.log("Invalid deposit amount, try again");
         }
         else {
             return numberDepositAmount;
@@ -35,8 +35,25 @@ const deposit = () => {
     
 };
 
-const depositAmount = deposit();
-console.log(depositAmount);
+// Step 2
+
+const getNumberOfLines = () => {
+    while (true) { 
+        const lines = prompt("Enter the number of lines to bet on (1-3): "); 
+        const numberOfLines = parseFloat(lines); 
+
+        if (isNaN(numberOfLines) || numberOfLines < 1 || numberOfLines > 3){
+            console.log("Invalid number of lines, try again");
+        }
+        else {
+            return numberOfLines;
+        }
+    }
+}
 
 
-// 17:45
+
+let balance = deposit();
+const numberOfLines = getNumberOfLines();
+
+
