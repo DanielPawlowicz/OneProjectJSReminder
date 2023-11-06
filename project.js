@@ -11,9 +11,28 @@ STEPS
 
 */
 
-// Step 1
-
 const prompt = require("prompt-sync")();
+
+// Step 4
+
+const ROWS = 3;
+const COLS = 3;
+
+const SYMBOLS_COUNT = {
+    A: 2,
+    B: 4,
+    C: 6,
+    D: 8
+}
+
+const SYMBOL_VALUES = { // if user get a line of A he will get multiplied by 5
+    A: 5,
+    B: 4,
+    C: 3,
+    D: 2
+}
+
+// Step 1
 
 // function deposit() {
 //     return 1;
@@ -67,8 +86,35 @@ const getBet = (balance, lines) => {
     }
 }
 
+// Step 4 cd
+const spin = () => {
+    const symbols = [];
+    for (const [symbol,count] of Object.entries(SYMBOLS_COUNT)){
+        for (let i = 0; i < count; i++){
+            symbols.push(symbol);
+        }
+    }
+    
+    const reels = [[],[],[]];
+    for (let i = 0; i < COLS; i++){
+        const reelSymbols = [...symbols]; // it copiers symbols array
+        for (let j = 0; j < ROWS; j++){
+            const randomIndex = Math.floor(Math.random() * reelSymbols.length);
+            const selectedSymbol = reelSymbols[randomIndex];
+            reels[i].push(selectedSymbol);
+            reelSymbols.splice(randomIndex, 1);
+        }
+    }
+
+    return reels;
+};
+
+const reels = spin();
+
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance, numberOfLines);
 
-// 25:50
+
+
+// 44:25
