@@ -164,19 +164,52 @@ const getWinnings = (rows, bet, lines) => {
     return winnings; 
 }
 
+// step 7
 
-// executing
-
-let balance = deposit();
-const numberOfLines = getNumberOfLines();
-const bet = getBet(balance, numberOfLines);
-const reels = spin();
-const rows = transpose(reels);
-printRows(rows);
-const winnings = getWinnings(rows, bet, numberOfLines);
-console.log("you won, $" + winnings.toString());
+const cashOut = (balance) => {
+    if (balance > 0){
+        console.log("Your cashout is $" + balance + "\nHope to see you again :D");
+    }else console.log("Hope to see you again :)");
+}
 
 
+//                              executing
 
+// Step 6
+const game = () => {
 
+    let balance = deposit();
 
+    while (true){
+        console.log("You have a balance of $" + balance);
+        const numberOfLines = getNumberOfLines();
+        const bet = getBet(balance, numberOfLines);
+        balance -= bet * numberOfLines;
+        const reels = spin();
+        const rows = transpose(reels);
+        printRows(rows);
+        const winnings = getWinnings(rows, bet, numberOfLines);
+        balance += winnings;
+        console.log("you won, $" + winnings.toString());
+
+        if (balance <= 0){
+            const depositMore = prompt("You ran out of money :( Do you want to deposit more? :D (y/n)");
+            if (depositMore != "y"){
+                game();
+            } else {
+                break;
+            }
+        }
+
+        const playAgain = prompt("Do you want to play again (y/n)? ");
+
+        if (playAgain != "y") break;
+    }
+
+    cashOut(balance);
+};
+
+game();
+    
+    
+    
