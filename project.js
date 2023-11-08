@@ -111,7 +111,7 @@ const spin = () => {
 };
 
 
-// Step 5
+// Step 4.5
 
 const transpose =(reels) => {
     const rows = [];
@@ -140,6 +140,31 @@ const printRows = (rows) => {
 };
 
 
+// Step 5
+
+const getWinnings = (rows, bet, lines) => {
+    let winnings = 0;
+    for (let row = 0; row < lines; row++){
+        const symbols = rows[row];
+        let allSame = true;
+        
+        for (const symbol of symbols){ // the loop where we go through the entire array "symbols" and the iterator is "symbol"
+            if (symbol != symbols[0]){ // we need to have all symbols same in a row, so we can compare to the 0 index symbol from the row
+                allSame = false;
+                break;
+            }
+        }
+
+        if (allSame){
+            winnings += bet * SYMBOL_VALUES[symbols[0]]; // again we can compare all to whatever index because all must be the same to win
+        }
+
+    }
+
+    return winnings; 
+}
+
+
 // executing
 
 let balance = deposit();
@@ -148,6 +173,8 @@ const bet = getBet(balance, numberOfLines);
 const reels = spin();
 const rows = transpose(reels);
 printRows(rows);
+const winnings = getWinnings(rows, bet, numberOfLines);
+console.log("you won, $" + winnings.toString());
 
 
 
