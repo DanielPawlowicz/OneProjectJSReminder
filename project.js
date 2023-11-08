@@ -95,8 +95,9 @@ const spin = () => {
         }
     }
     
-    const reels = [[],[],[]];
+    const reels = [];
     for (let i = 0; i < COLS; i++){
+            reels.push([]);
         const reelSymbols = [...symbols]; // it copiers symbols array
         for (let j = 0; j < ROWS; j++){
             const randomIndex = Math.floor(Math.random() * reelSymbols.length);
@@ -117,4 +118,6 @@ const bet = getBet(balance, numberOfLines);
 
 
 
-// 44:25
+// Step 5
+
+
