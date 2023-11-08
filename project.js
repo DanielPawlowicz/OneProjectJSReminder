@@ -177,7 +177,7 @@ const cashOut = (balance) => {
 
 // Step 6
 const game = () => {
-
+    
     let balance = deposit();
 
     while (true){
@@ -191,7 +191,7 @@ const game = () => {
         const winnings = getWinnings(rows, bet, numberOfLines);
         balance += winnings;
         console.log("you won, $" + winnings.toString());
-
+      
         // if (balance <= 0){
         //     const depositMore = prompt("You ran out of money :( Do you want to deposit more? :D (y/n)");
         //     if (depositMore != "y"){
