@@ -164,6 +164,13 @@ const getWinnings = (rows, bet, lines) => {
     return winnings; 
 }
 
+// step 7 - Cashout
+
+const cashOut = (balance) => {
+    if (balance > 0){
+        console.log("Your cashout is $" + balance + "\nHope to see you again :D");
+    }else console.log("Hope to see you again :)");
+}
 
 
 //                              executing
@@ -184,6 +191,15 @@ const game = () => {
         const winnings = getWinnings(rows, bet, numberOfLines);
         balance += winnings;
         console.log("you won, $" + winnings.toString());
+      
+        // if (balance <= 0){
+        //     const depositMore = prompt("You ran out of money :( Do you want to deposit more? :D (y/n)");
+        //     if (depositMore != "y"){
+        //         game();
+        //     } else {
+        //         break;
+        //     }
+        // }
 
         if (balance <= 0){
             console.log("You ran out of money!");
@@ -195,6 +211,7 @@ const game = () => {
         if (playAgain != "y") break;
     }
 
+    cashOut(balance);
 };
 
 game();
